@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rg_container"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/tv_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/home"
+        android:gravity="center"
+        android:text="室内"
+        android:textSize="20sp" />
+
+    <RadioButton
+        android:id="@+id/tv_weather"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/weather"
+        android:gravity="center"
+        android:text="天气"
+        android:textSize="20sp" />
+
+    <RadioButton
+        android:id="@+id/tv_control"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/control"
+        android:gravity="center"
+        android:text="控制"
+        android:textSize="20sp" />
+
+    <RadioButton
+        android:id="@+id/tv_setting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/setting"
+        android:gravity="center"
+        android:text="设置"
+        android:textSize="20sp" />
+</RadioGroup>
