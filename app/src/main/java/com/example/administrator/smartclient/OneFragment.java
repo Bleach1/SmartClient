@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,9 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * https://blog.csdn.net/yyhaohaoxuexi/article/details/77772498
+ */
 public class OneFragment extends Fragment {
 
     private ThreadPoolExecutor threadPoolExecutor;
@@ -76,7 +80,7 @@ public class OneFragment extends Fragment {
         threadPoolExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                receiveMsg();
+               // receiveMsg();
             }
         });
 
@@ -101,30 +105,19 @@ public class OneFragment extends Fragment {
                 new LinkedBlockingDeque<Runnable>(1024),
                 threadFactory
         );
+
+
     }
-
-    private void connectServer() {
-        threadPoolExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    socket = new Socket("10.22.1.58", 6000);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
 
     private void receiveMsg() {
         try {
-            Socket receiveSocket = new Socket("10.22.1.58", 6000);
-            for (; ; ) {
-                InputStream inputStream = receiveSocket.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String result = bufferedReader.readLine();
+            Socket receiveSocket = new Socket("192.168.1.113", 6000);
+            InputStream inputStream = receiveSocket.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String result = null;
+            while (!((result = bufferedReader.readLine()) == null)) {
+                result = bufferedReader.readLine();
+                Log.i("ljn", "receiveMsg: " + result);
                 if (!TextUtils.isEmpty(result) && result.length() > 1) {
                     Message msg = Message.obtain();
                     msg.obj = result;
@@ -134,6 +127,7 @@ public class OneFragment extends Fragment {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Log.i("ljn", "receiveMsg: " + e.toString());
         }
     }
 
