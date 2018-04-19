@@ -1,154 +1,369 @@
 package com.example.administrator.smartclient;
 
+import java.util.List;
+
 public class Weather {
 
+
     /**
-     * weatherinfo : {"city":"大连","cityid":"101070201","temp":"9","WD":"南风","WS":"2级","SD":"50%","WSE":"2","time":"17:00","isRadar":"1","Radar":"JC_RADAR_AZ9411_JB","njd":"10000","qy":"1002","rain":"0"}
+     * date : 20180419
+     * message : Success !
+     * status : 200
+     * city : 大连
+     * count : 1247
+     * data : {"shidu":"60%","pm25":53,"pm10":139,"quality":"轻度污染","wendu":"11","ganmao":"儿童、老年人及心脏、呼吸系统疾病患者人群应减少长时间或高强度户外锻炼","yesterday":{"date":"18日星期三","sunrise":"05:15","high":"高温 17.0℃","low":"低温 9.0℃","sunset":"18:32","aqi":91,"fx":"南风","fl":"5-6级","type":"晴","notice":"愿你拥有比阳光明媚的心情"},"forecast":[{"date":"19日星期四","sunrise":"05:14","high":"高温 20.0℃","low":"低温 10.0℃","sunset":"18:33","aqi":85,"fx":"东南风","fl":"4-5级","type":"晴","notice":"愿你拥有比阳光明媚的心情"},{"date":"20日星期五","sunrise":"05:12","high":"高温 18.0℃","low":"低温 9.0℃","sunset":"18:34","aqi":37,"fx":"东南风","fl":"5-6级","type":"晴","notice":"愿你拥有比阳光明媚的心情"},{"date":"21日星期六","sunrise":"05:11","high":"高温 16.0℃","low":"低温 8.0℃","sunset":"18:35","aqi":25,"fx":"东南风","fl":"5-6级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"},{"date":"22日星期日","sunrise":"05:10","high":"高温 15.0℃","low":"低温 9.0℃","sunset":"18:36","aqi":26,"fx":"东北风","fl":"5-6级","type":"阴","notice":"不要被阴云遮挡住好心情"},{"date":"23日星期一","sunrise":"05:08","high":"高温 17.0℃","low":"低温 9.0℃","sunset":"18:37","aqi":38,"fx":"东北风","fl":"5-6级","type":"晴","notice":"愿你拥有比阳光明媚的心情"}]}
      */
 
-    private WeatherinfoBean weatherinfo;
+    private String date;
+    private String message;
+    private int status;
+    private String city;
+    private int count;
+    private DataBean data;
 
-    public WeatherinfoBean getWeatherinfo() {
-        return weatherinfo;
+    public String getDate() {
+        return date;
     }
 
-    public void setWeatherinfo(WeatherinfoBean weatherinfo) {
-        this.weatherinfo = weatherinfo;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public static class WeatherinfoBean {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
         /**
-         * city : 大连
-         * cityid : 101070201
-         * temp : 9
-         * WD : 南风
-         * WS : 2级
-         * SD : 50%
-         * WSE : 2
-         * time : 17:00
-         * isRadar : 1
-         * Radar : JC_RADAR_AZ9411_JB
-         * njd : 10000
-         * qy : 1002
-         * rain : 0
+         * shidu : 60%
+         * pm25 : 53
+         * pm10 : 139
+         * quality : 轻度污染
+         * wendu : 11
+         * ganmao : 儿童、老年人及心脏、呼吸系统疾病患者人群应减少长时间或高强度户外锻炼
+         * yesterday : {"date":"18日星期三","sunrise":"05:15","high":"高温 17.0℃","low":"低温 9.0℃","sunset":"18:32","aqi":91,"fx":"南风","fl":"5-6级","type":"晴","notice":"愿你拥有比阳光明媚的心情"}
+         * forecast : [{"date":"19日星期四","sunrise":"05:14","high":"高温 20.0℃","low":"低温 10.0℃","sunset":"18:33","aqi":85,"fx":"东南风","fl":"4-5级","type":"晴","notice":"愿你拥有比阳光明媚的心情"},{"date":"20日星期五","sunrise":"05:12","high":"高温 18.0℃","low":"低温 9.0℃","sunset":"18:34","aqi":37,"fx":"东南风","fl":"5-6级","type":"晴","notice":"愿你拥有比阳光明媚的心情"},{"date":"21日星期六","sunrise":"05:11","high":"高温 16.0℃","low":"低温 8.0℃","sunset":"18:35","aqi":25,"fx":"东南风","fl":"5-6级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"},{"date":"22日星期日","sunrise":"05:10","high":"高温 15.0℃","low":"低温 9.0℃","sunset":"18:36","aqi":26,"fx":"东北风","fl":"5-6级","type":"阴","notice":"不要被阴云遮挡住好心情"},{"date":"23日星期一","sunrise":"05:08","high":"高温 17.0℃","low":"低温 9.0℃","sunset":"18:37","aqi":38,"fx":"东北风","fl":"5-6级","type":"晴","notice":"愿你拥有比阳光明媚的心情"}]
          */
 
-        private String city;
-        private String cityid;
-        private String temp;
-        private String WD;
-        private String WS;
-        private String SD;
-        private String WSE;
-        private String time;
-        private String isRadar;
-        private String Radar;
-        private String njd;
-        private String qy;
-        private String rain;
+        private String shidu;
+        private int pm25;
+        private int pm10;
+        private String quality;
+        private String wendu;
+        private String ganmao;
+        private YesterdayBean yesterday;
+        private List<ForecastBean> forecast;
 
-        public String getCity() {
-            return city;
+        public String getShidu() {
+            return shidu;
         }
 
-        public void setCity(String city) {
-            this.city = city;
+        public void setShidu(String shidu) {
+            this.shidu = shidu;
         }
 
-        public String getCityid() {
-            return cityid;
+        public int getPm25() {
+            return pm25;
         }
 
-        public void setCityid(String cityid) {
-            this.cityid = cityid;
+        public void setPm25(int pm25) {
+            this.pm25 = pm25;
         }
 
-        public String getTemp() {
-            return temp;
+        public int getPm10() {
+            return pm10;
         }
 
-        public void setTemp(String temp) {
-            this.temp = temp;
+        public void setPm10(int pm10) {
+            this.pm10 = pm10;
         }
 
-        public String getWD() {
-            return WD;
+        public String getQuality() {
+            return quality;
         }
 
-        public void setWD(String WD) {
-            this.WD = WD;
+        public void setQuality(String quality) {
+            this.quality = quality;
         }
 
-        public String getWS() {
-            return WS;
+        public String getWendu() {
+            return wendu;
         }
 
-        public void setWS(String WS) {
-            this.WS = WS;
+        public void setWendu(String wendu) {
+            this.wendu = wendu;
         }
 
-        public String getSD() {
-            return SD;
+        public String getGanmao() {
+            return ganmao;
         }
 
-        public void setSD(String SD) {
-            this.SD = SD;
+        public void setGanmao(String ganmao) {
+            this.ganmao = ganmao;
         }
 
-        public String getWSE() {
-            return WSE;
+        public YesterdayBean getYesterday() {
+            return yesterday;
         }
 
-        public void setWSE(String WSE) {
-            this.WSE = WSE;
+        public void setYesterday(YesterdayBean yesterday) {
+            this.yesterday = yesterday;
         }
 
-        public String getTime() {
-            return time;
+        public List<ForecastBean> getForecast() {
+            return forecast;
         }
 
-        public void setTime(String time) {
-            this.time = time;
+        public void setForecast(List<ForecastBean> forecast) {
+            this.forecast = forecast;
         }
 
-        public String getIsRadar() {
-            return isRadar;
+        public static class YesterdayBean {
+            /**
+             * date : 18日星期三
+             * sunrise : 05:15
+             * high : 高温 17.0℃
+             * low : 低温 9.0℃
+             * sunset : 18:32
+             * aqi : 91
+             * fx : 南风
+             * fl : 5-6级
+             * type : 晴
+             * notice : 愿你拥有比阳光明媚的心情
+             */
+
+            private String date;
+            private String sunrise;
+            private String high;
+            private String low;
+            private String sunset;
+            private int aqi;
+            private String fx;
+            private String fl;
+            private String type;
+            private String notice;
+
+            public String getDate() {
+                return date;
+            }
+
+            public void setDate(String date) {
+                this.date = date;
+            }
+
+            public String getSunrise() {
+                return sunrise;
+            }
+
+            public void setSunrise(String sunrise) {
+                this.sunrise = sunrise;
+            }
+
+            public String getHigh() {
+                return high;
+            }
+
+            public void setHigh(String high) {
+                this.high = high;
+            }
+
+            public String getLow() {
+                return low;
+            }
+
+            public void setLow(String low) {
+                this.low = low;
+            }
+
+            public String getSunset() {
+                return sunset;
+            }
+
+            public void setSunset(String sunset) {
+                this.sunset = sunset;
+            }
+
+            public int getAqi() {
+                return aqi;
+            }
+
+            public void setAqi(int aqi) {
+                this.aqi = aqi;
+            }
+
+            public String getFx() {
+                return fx;
+            }
+
+            public void setFx(String fx) {
+                this.fx = fx;
+            }
+
+            public String getFl() {
+                return fl;
+            }
+
+            public void setFl(String fl) {
+                this.fl = fl;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getNotice() {
+                return notice;
+            }
+
+            public void setNotice(String notice) {
+                this.notice = notice;
+            }
         }
 
-        public void setIsRadar(String isRadar) {
-            this.isRadar = isRadar;
-        }
+        public static class ForecastBean {
+            /**
+             * date : 19日星期四
+             * sunrise : 05:14
+             * high : 高温 20.0℃
+             * low : 低温 10.0℃
+             * sunset : 18:33
+             * aqi : 85
+             * fx : 东南风
+             * fl : 4-5级
+             * type : 晴
+             * notice : 愿你拥有比阳光明媚的心情
+             */
 
-        public String getRadar() {
-            return Radar;
-        }
+            private String date;
+            private String sunrise;
+            private String high;
+            private String low;
+            private String sunset;
+            private int aqi;
+            private String fx;
+            private String fl;
+            private String type;
+            private String notice;
 
-        public void setRadar(String Radar) {
-            this.Radar = Radar;
-        }
+            public String getDate() {
+                return date;
+            }
 
-        public String getNjd() {
-            return njd;
-        }
+            public void setDate(String date) {
+                this.date = date;
+            }
 
-        public void setNjd(String njd) {
-            this.njd = njd;
-        }
+            public String getSunrise() {
+                return sunrise;
+            }
 
-        public String getQy() {
-            return qy;
-        }
+            public void setSunrise(String sunrise) {
+                this.sunrise = sunrise;
+            }
 
-        public void setQy(String qy) {
-            this.qy = qy;
-        }
+            public String getHigh() {
+                return high;
+            }
 
-        public String getRain() {
-            return rain;
-        }
+            public void setHigh(String high) {
+                this.high = high;
+            }
 
-        public void setRain(String rain) {
-            this.rain = rain;
+            public String getLow() {
+                return low;
+            }
+
+            public void setLow(String low) {
+                this.low = low;
+            }
+
+            public String getSunset() {
+                return sunset;
+            }
+
+            public void setSunset(String sunset) {
+                this.sunset = sunset;
+            }
+
+            public int getAqi() {
+                return aqi;
+            }
+
+            public void setAqi(int aqi) {
+                this.aqi = aqi;
+            }
+
+            public String getFx() {
+                return fx;
+            }
+
+            public void setFx(String fx) {
+                this.fx = fx;
+            }
+
+            public String getFl() {
+                return fl;
+            }
+
+            public void setFl(String fl) {
+                this.fl = fl;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getNotice() {
+                return notice;
+            }
+
+            public void setNotice(String notice) {
+                this.notice = notice;
+            }
         }
     }
 }

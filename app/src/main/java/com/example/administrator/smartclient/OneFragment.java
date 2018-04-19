@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,14 +29,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class OneFragment extends Fragment {
 
-    private ThreadPoolExecutor threadPoolExecutor;
+
     private TextView tv1;
     private TextView tv2;
     private TextView tv3;
     private TextView tv4;
     private ImageView imageView;
-    private Socket socket;
-
 
     @SuppressLint("HandlerLeak")
     private Handler mReceiveHandler = new Handler() {
@@ -74,22 +71,17 @@ public class OneFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        threadPoolExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-               // receiveMsg();
-            }
-        });
-
+    public static OneFragment newInstance() {
+        Bundle args = new Bundle();
+        OneFragment fragment = new OneFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ThreadFactory threadFactory = new ThreadFactory() {
             @Override
             public Thread newThread(@NonNull Runnable r) {
@@ -106,23 +98,31 @@ public class OneFragment extends Fragment {
                 threadFactory
         );
 
+        threadPoolExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                receiveMsg();
+            }
+        });
+
 
     }
 
-    private void receiveMsg() {
+    private ThreadPoolExecutor threadPoolExecutor;
+    private Socket socket;
+
+    public void receiveMsg() {
         try {
-            Socket receiveSocket = new Socket("192.168.1.113", 6000);
-            InputStream inputStream = receiveSocket.getInputStream();
+            socket = new Socket("10.22.1.58", 6000);
+            InputStream inputStream = socket.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String result = null;
-            while (!((result = bufferedReader.readLine()) == null)) {
+            while (bufferedReader.readLine() != null) {
                 result = bufferedReader.readLine();
-                Log.i("ljn", "receiveMsg: " + result);
-                if (!TextUtils.isEmpty(result) && result.length() > 1) {
-                    Message msg = Message.obtain();
-                    msg.obj = result;
-                    mReceiveHandler.sendMessage(msg);
-                }
+                Message message = Message.obtain();
+                message.obj = result;
+                mReceiveHandler.sendMessage(message);
+                Log.i("ljn", "receiveMsg one: " + result);
             }
 
         } catch (IOException e) {
@@ -131,10 +131,4 @@ public class OneFragment extends Fragment {
         }
     }
 
-    public static OneFragment newInstance() {
-        Bundle args = new Bundle();
-        OneFragment fragment = new OneFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 }

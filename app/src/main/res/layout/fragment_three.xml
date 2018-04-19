@@ -4,23 +4,24 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="400dp"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
         <ImageView
             android:id="@+id/lightbulb_a"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:scaleType="fitXY"
             android:src="@drawable/lightbulb_a" />
 
         <ImageView
             android:id="@+id/lightbulb_b"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentRight="true"
             android:scaleType="fitXY"
             android:src="@drawable/lightbulb_b" />
@@ -28,8 +29,8 @@
 
         <ImageView
             android:id="@+id/fan_a"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:scaleType="fitXY"
@@ -38,11 +39,12 @@
 
         <ImageView
             android:id="@+id/fan_b"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:scaleType="fitXY"
             android:src="@drawable/fan_b" />
     </RelativeLayout>
+
 </RelativeLayout>

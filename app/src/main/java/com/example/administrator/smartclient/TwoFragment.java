@@ -15,8 +15,13 @@ import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 import org.apache.http.Header;
+
+import javax.net.ssl.SSLSocketFactory;
 
 public class TwoFragment extends Fragment {
 
@@ -24,6 +29,9 @@ public class TwoFragment extends Fragment {
     private TextView tv2;
     private TextView tv3;
     private TextView tv4;
+    private TextView tv5;
+    private TextView tv6;
+    private TextView tv7;
 
     @Nullable
     @Override
@@ -33,6 +41,9 @@ public class TwoFragment extends Fragment {
         tv2 = view.findViewById(R.id.tv2);
         tv3 = view.findViewById(R.id.tv3);
         tv4 = view.findViewById(R.id.tv4);
+        tv5 = view.findViewById(R.id.tv5);
+        tv6 = view.findViewById(R.id.tv6);
+        tv7 = view.findViewById(R.id.tv7);
         return view;
     }
 
@@ -43,29 +54,44 @@ public class TwoFragment extends Fragment {
     }
 
     private void getWeather() {
-        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        asyncHttpClient.get("http://www.weather.com.cn/data/sk/101070201.html", new TextHttpResponseHandler() {
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.i("ljn", "onFailure: " + throwable.toString());
-            }
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Weather weather = new Gson().fromJson(responseString, Weather.class);
-                fillData(weather);
-                Log.i("ljn", "onSuccess: " + responseString);
-            }
-        });
+        OkGo.<String>get("https://www.sojson.com/open/api/weather/json.shtml?city=大连").tag(this)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.i("ljn", "onSuccess: " + response.body());
+                        final Weather weather = new Gson().fromJson(response.body(), Weather.class);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                fillData(weather);
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Log.i("ljn", "onError: " + response.body());
+                    }
+                });
+
+
     }
 
 
     @SuppressLint("SetTextI18n")
     private void fillData(Weather weather) {
-        tv1.setText(weather.getWeatherinfo().getCity());
-        tv2.setText(weather.getWeatherinfo().getWD() + "  " + weather.getWeatherinfo().getWS());
-        tv3.setText(weather.getWeatherinfo().getTemp());
-        tv4.setText(weather.getWeatherinfo().getSD());
+        tv1.setText(weather.getCity());
+        Weather.DataBean.ForecastBean forecastBean = weather.getData().getForecast().get(0);
+        tv2.setText(forecastBean.getFx() + "---" + forecastBean.getFl());
+        tv3.setText(forecastBean.getLow() + "---" + forecastBean.getHigh());
+        tv4.setText(weather.getData().getShidu());
+        tv5.setText(forecastBean.getDate());
+        tv6.setText(forecastBean.getType());
+        tv7.setText(forecastBean.getNotice());
+
     }
 
     public static TwoFragment newInstance() {
