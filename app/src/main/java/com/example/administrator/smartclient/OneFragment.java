@@ -43,17 +43,22 @@ public class OneFragment extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String[] results = ((String) msg.obj).split(",");
-            if (results.length != 0) {
-                tv1.setText("光感值" + results[2]);
-                if ("0".equals(results[3])) {
-                    tv2.setText("报警   否");
-                    imageView.setBackgroundResource(R.drawable.no_police);
-                } else {
-                    tv2.setText("报警   是");
-                    imageView.setBackgroundResource(R.drawable.police);
+            try {
+                if (results.length != 0) {
+                    if (!"1".equals(results[2]) || !"2".equals(results[2])) {
+                        tv1.setText("光感值" + results[2]);
+                        if ("0".equals(results[3])) {
+                            tv2.setText("报警   否");
+                            imageView.setBackgroundResource(R.drawable.no_police);
+                        } else {
+                            tv2.setText("报警   是");
+                            imageView.setBackgroundResource(R.drawable.police);
+                        }
+                        tv3.setText("温度" + results[0]);
+                        tv4.setText("湿度" + results[1]);
+                    }
                 }
-                tv3.setText("温度" + results[0]);
-                tv4.setText("湿度" + results[1]);
+            } catch (Exception ignored) {
             }
         }
     };
