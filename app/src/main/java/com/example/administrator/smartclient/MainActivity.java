@@ -1,18 +1,12 @@
 package com.example.administrator.smartclient;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         //添加到数组
         mFragments = new Fragment[]{OneFragment.newInstance(),
                 TwoFragment.newInstance(),
-                ThreeFragment.newInstance(),
                 FourFragment.newInstance()};
         //开启事务
         FragmentManager fragmentManager = getSupportFragmentManager();

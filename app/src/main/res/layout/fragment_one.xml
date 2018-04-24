@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="60dp"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tv_monitor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:drawableTop="@drawable/monitor"
+            android:gravity="center"
+            android:text="开始监控" />
+
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/sb_btn_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            app:kswThumbHeight="30dp"
+            app:kswThumbWidth="40dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginTop="30dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:src="@drawable/light" />
 
         <TextView
@@ -34,14 +60,14 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/iv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:src="@drawable/no_police" />
 
         <TextView
@@ -58,14 +84,14 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/iv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:src="@drawable/temperature" />
 
         <TextView
@@ -82,14 +108,14 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/iv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:src="@drawable/humidity" />
 
         <TextView
@@ -103,5 +129,5 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-
+    <include layout="@layout/fragment_three" />
 </LinearLayout>

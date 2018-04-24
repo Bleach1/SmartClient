@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp">
 
         <ImageView
@@ -31,7 +31,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv2"
@@ -55,7 +56,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv3"
@@ -79,7 +81,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv4"
@@ -102,7 +105,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv5"
@@ -128,7 +132,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv6"
@@ -153,7 +158,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv7"
@@ -172,8 +178,6 @@
             android:layout_toRightOf="@id/iv7"
             android:text="提示"
             android:textSize="20sp" />
-
-
     </RelativeLayout>
 
 </LinearLayout>

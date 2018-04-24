@@ -35,5 +35,5 @@ dependencies {
 
 //以下三个选择添加，okrx和okrx2不能同时使用
     implementation 'com.lzy.net:okrx:1.0.2'
-
+    implementation 'com.kyleduo.switchbutton:library:2.0.0'
 }

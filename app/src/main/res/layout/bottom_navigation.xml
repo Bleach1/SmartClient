@@ -29,17 +29,6 @@
         android:textSize="20sp" />
 
     <RadioButton
-        android:id="@+id/tv_control"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:button="@null"
-        android:drawableTop="@drawable/control"
-        android:gravity="center"
-        android:text="控制"
-        android:textSize="20sp" />
-
-    <RadioButton
         android:id="@+id/tv_setting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
