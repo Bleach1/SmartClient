@@ -40,14 +40,16 @@ public class MainActivity extends AppCompatActivity {
     private void initFragment() {
 
         //添加到数组
-        mFragments = new Fragment[]{OneFragment.newInstance(),
-                TwoFragment.newInstance(),
+        mFragments = new Fragment[]{OneFragment.newInstance(), TwoFragment.newInstance(),
                 FourFragment.newInstance()};
-        //开启事务
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        //添加首页
-        ft.add(R.id.fl_container, mFragments[0]).commit();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fl_container, mFragments[0])
+                .add(R.id.fl_container, mFragments[1])
+                .add(R.id.fl_container, mFragments[2])
+                .hide(mFragments[1])
+                .hide(mFragments[2])
+                .show(mFragments[0]).commit();
         //默认设置为第0个
         setIndexSelected(0);
     }
@@ -64,15 +66,11 @@ public class MainActivity extends AppCompatActivity {
         ft.hide(mFragments[mIndex]);
         //判断是否添加
         if (!mFragments[index].isAdded()) {
-            ft.add(R.id.fl_container, mFragments[index]).show(mFragments[index]);
-        } else {
-            ft.show(mFragments[index]);
+            ft.add(R.id.fl_container, mFragments[index]);
         }
-
-        ft.commit();
+        ft.show(mFragments[index]).commit();
         //再次赋值
         mIndex = index;
-
     }
 
     @Override

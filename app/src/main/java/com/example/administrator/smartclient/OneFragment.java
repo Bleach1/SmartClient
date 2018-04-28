@@ -172,23 +172,20 @@ public class OneFragment extends Fragment implements View.OnClickListener {
             super.handleMessage(msg);
             String[] results = ((String) msg.obj).split(",");
             try {
-                if (results.length != 0) {
-
-                    tv1.setText("光感值" + results[0]);
-                    if ("1".equals(results[1])) {
-                        tv2.setText("报警   是");
-                        imageView.setBackgroundResource(R.drawable.police);
-                    } else {
-                        tv2.setText("报警   否");
-                        imageView.setBackgroundResource(R.drawable.no_police);
-                    }
-
-                    tv3.setText("温度" + results[2]);
-                    tv4.setText("湿度" + results[3]);
-
-
+                tv1.setText("光感值 " + results[0]);
+                if ("1".equals(results[1])) {
+                    tv2.setText("报警   是");
+                    imageView.setBackgroundResource(R.drawable.police);
+                } else {
+                    tv2.setText("报警   否");
+                    imageView.setBackgroundResource(R.drawable.no_police);
                 }
+
+                tv3.setText("温度 " + results[2]);
+                tv4.setText("湿度 " + results[3]);
+
             } catch (Exception ignored) {
+                Log.i("ljn", "handleMessage: " + ignored.toString());
             }
         }
     };
